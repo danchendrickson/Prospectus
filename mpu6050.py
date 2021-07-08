@@ -53,6 +53,10 @@ class mpu6050:
     ACCEL_CONFIG = 0x1C
     GYRO_CONFIG = 0x1B
 
+    X_OFFSET = 0.0
+    Y_OFFSET = 0.0
+    Z_OFFSET = 0.0
+
     def __init__(self, address, bus=1):
         self.address = address
         self.bus = smbus.SMBus(bus)
@@ -155,17 +159,17 @@ class mpu6050:
             print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
             accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
 
-        x = x / accel_scale_modifier
-        y = y / accel_scale_modifier
-        z = z / accel_scale_modifier
+        x = x / accel_scale_modifier - self.X_OFFSET
+        y = y / accel_scale_modifier - self.Y_OFFSET
+        z = z / accel_scale_modifier - self.Z_OFFSET
 
         if g is True:
-            return {'x': x, 'y': y, 'z': z}
+            return  x,  y, z
         elif g is False:
             x = x * self.GRAVITIY_MS2
             y = y * self.GRAVITIY_MS2
             z = z * self.GRAVITIY_MS2
-            return {'x': x, 'y': y, 'z': z}
+            return x, y, z
 
     def set_gyro_range(self, gyro_range):
         """Sets the range of the gyroscope to range.
@@ -231,7 +235,7 @@ class mpu6050:
         y = y / gyro_scale_modifier
         z = z / gyro_scale_modifier
 
-        return {'x': x, 'y': y, 'z': z}
+        return x, y, z
 
     def get_all_data(self):
         """Reads and returns all the available data."""
@@ -241,20 +245,7 @@ class mpu6050:
 
         return [accel, gyro, temp]
 
-if __name__ == "__main__":
-    mpu = mpu6050(0x68)
-    print(mpu.get_temp())
-    accel_data = mpu.get_accel_data()
-    print(accel_data['x'])
-    print(accel_data['y'])
-    print(accel_data['z'])
-    gyro_data = mpu.get_gyro_data()
-    print(gyro_data['x'])
-    print(gyro_data['y'])
-    print(gyro_data['z'])
-
-
-def get_offfset(self, cord = 3):
+    def get_offset(self, cord = 3):
         """For a coordinate 1=x, 2=y 3=z
            Figure out how to set to 1 g, and update the others to 0
         """
@@ -298,6 +289,26 @@ def get_offfset(self, cord = 3):
                 print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
                 accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
 
+            
+            x = x / accel_scale_modifier - self.X_OFFSET
+            y = y / accel_scale_modifier - self.Y_OFFSET
+            z = z / accel_scale_modifier - self.Z_OFFSET
+
+            accel_scale_modifier = None
+            accel_range = self.read_accel_range(True)
+
+            if accel_range == self.ACCEL_RANGE_2G:
+                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
+            elif accel_range == self.ACCEL_RANGE_4G:
+                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_4G
+            elif accel_range == self.ACCEL_RANGE_8G:
+                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_8G
+            elif accel_range == self.ACCEL_RANGE_16G:
+                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_16G
+            else:
+                print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
+                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
+
             x = x / accel_scale_modifier
             y = y / accel_scale_modifier
             z = z / accel_scale_modifier
@@ -307,10 +318,24 @@ def get_offfset(self, cord = 3):
 
             off1 += goal1 - x
             off2 += goal2 - y
-            off3 += goal3 - y
+            off3 += goal3 - z
 
         off1 /= loops
         off2 /= loops
         off3 /= loops
 
         return {'x': off1, 'y': off2, 'z': off3}
+
+if __name__ == "__main__":
+    mpu = mpu6050(0x68)
+    print(mpu.get_temp())
+    accel_data = mpu.get_accel_data()
+    print(accel_data['x'])
+    print(accel_data['y'])
+    print(accel_data['z'])
+    gyro_data = mpu.get_gyro_data()
+    print(gyro_data['x'])
+    print(gyro_data['y'])
+    print(gyro_data['z'])
+
+

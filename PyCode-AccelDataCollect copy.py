@@ -14,9 +14,13 @@
 
 import mpu6050 as mp
 from time import sleep
+import np
 sensor = mp.mpu6050(0x68)
 
-for i in range(10):
-    accelerometer_data = sensor.get_accel_data(True)
+for i in range(1250):
+    accelerometer_data = sensor.get_all_data()
     print(accelerometer_data)
-    sleep(2)
+    sleep(0.01)
+
+
+#print(sensor.get_offset())
