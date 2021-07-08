@@ -10,12 +10,12 @@ start = time.time()
 
 j = 1
 
-while ((time.time() - start) / 60.0 /60.0) < 0.25:
+while ((time.time() - start) / 60.0 /60.0) < 0.125:
     Results = []
     for i in range(60000):
         gx, gy, gz = sensor.get_accel_data(True)
         #tx, ty, tz = sensor.get_gyro_data()
-        Results.append([float(int((time.time()-start) * 100.0))/100.0, gx, gy, gz])
+        Results.append([float(int((time.time()-start) * 1000.0))/1000.0, gx, gy, gz])
         time.sleep(0.0001)
 
     Results = np.matrix(Results)

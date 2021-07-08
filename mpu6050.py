@@ -159,9 +159,9 @@ class mpu6050:
             print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
             accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
 
-        x = float(int(x / accel_scale_modifier - self.X_OFFSET*1000.0))/1000.0
-        y = float(int(y / accel_scale_modifier - self.Y_OFFSET*1000.0))/1000.0
-        z = float(int(z / accel_scale_modifier - self.Z_OFFSET*1000.0))/1000.0
+        x = float(int((x / accel_scale_modifier - self.X_OFFSET)*1000.0))/1000.0
+        y = float(int((y / accel_scale_modifier - self.Y_OFFSET)*1000.0))/1000.0
+        z = float(int((z / accel_scale_modifier - self.Z_OFFSET)*1000.0))/1000.0
 
         if g is True:
             return  x,  y, z
