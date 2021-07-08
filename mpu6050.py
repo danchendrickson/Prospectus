@@ -159,16 +159,16 @@ class mpu6050:
             print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
             accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
 
-        x = x / accel_scale_modifier - self.X_OFFSET
-        y = y / accel_scale_modifier - self.Y_OFFSET
-        z = z / accel_scale_modifier - self.Z_OFFSET
+        x = float(int(x / accel_scale_modifier - self.X_OFFSET*1000.0))/1000.0
+        y = float(int(y / accel_scale_modifier - self.Y_OFFSET*1000.0))/1000.0
+        z = float(int(z / accel_scale_modifier - self.Z_OFFSET*1000.0))/1000.0
 
         if g is True:
             return  x,  y, z
         elif g is False:
-            x = x * self.GRAVITIY_MS2
-            y = y * self.GRAVITIY_MS2
-            z = z * self.GRAVITIY_MS2
+            x = float(int(x * self.GRAVITIY_MS2*1000.0))/1000.0
+            y = float(int(y * self.GRAVITIY_MS2*1000.0))/1000.0
+            z = float(int(z * self.GRAVITIY_MS2*1000.0))/1000.0
             return x, y, z
 
     def set_gyro_range(self, gyro_range):
