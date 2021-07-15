@@ -118,20 +118,21 @@ class mpu6050:
         returns -1 something went wrong.
         """
         raw_data = self.bus.read_byte_data(self.address, self.ACCEL_CONFIG)
-
+        
         if raw is True:
-            return raw_data
+            val = raw_data
         elif raw is False:
             if raw_data == self.ACCEL_RANGE_2G:
-                return 2
+                val =  2
             elif raw_data == self.ACCEL_RANGE_4G:
-                return 4
+                val =  4
             elif raw_data == self.ACCEL_RANGE_8G:
-                return 8
+                val =  8
             elif raw_data == self.ACCEL_RANGE_16G:
-                return 16
+                val =  16
             else:
-                return -1
+                val =  -1
+        return val
 
     def get_accel_data(self, g = False):
         """Gets and returns the X, Y and Z values from the accelerometer.
@@ -163,13 +164,11 @@ class mpu6050:
         y = float(int((y / accel_scale_modifier - self.Y_OFFSET)*100000.0))/100000.0
         z = float(int((z / accel_scale_modifier - self.Z_OFFSET)*100000.0))/100000.0
 
-        if g is True:
-            return  x,  y, z
-        elif g is False:
+        if g is False:
             x = float(int(x * self.GRAVITIY_MS2*100000.0))/100000.0
             y = float(int(y * self.GRAVITIY_MS2*100000.0))/100000.0
             z = float(int(z * self.GRAVITIY_MS2*100000.0))/100000.0
-            return x, y, z
+        return x, y, z
 
     def set_gyro_range(self, gyro_range):
         """Sets the range of the gyroscope to range.
@@ -182,6 +181,8 @@ class mpu6050:
 
         # Write the new range to the ACCEL_CONFIG register
         self.bus.write_byte_data(self.address, self.GYRO_CONFIG, gyro_range)
+        
+        return None
 
     def read_gyro_range(self, raw = False):
         """Reads the range the gyroscope is set to.
@@ -245,86 +246,6 @@ class mpu6050:
 
         return [accel, gyro, temp]
 
-    def get_offset(self, cord = 3):
-        """For a coordinate 1=x, 2=y 3=z
-           Figure out how to set to 1 g, and update the others to 0
-        """
-        loops = 1500
-        off1 = 0
-        off2 = 0
-        off3 = 0
-
-        if cord == 1:
-            goal1 = 1
-            goal2 = 0
-            goal3 = 0
-
-        if cord == 2:
-            goal1 = 0
-            goal2 = 1
-            goal3 = 0
-
-        if cord == 3:
-            goal1 = 0
-            goal2 = 0
-            goal3 = 1
-
-        for i in range(loops):
-            x = self.read_i2c_word(self.ACCEL_XOUT0)
-            y = self.read_i2c_word(self.ACCEL_YOUT0)
-            z = self.read_i2c_word(self.ACCEL_ZOUT0)
-
-            accel_scale_modifier = None
-            accel_range = self.read_accel_range(True)
-
-            if accel_range == self.ACCEL_RANGE_2G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
-            elif accel_range == self.ACCEL_RANGE_4G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_4G
-            elif accel_range == self.ACCEL_RANGE_8G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_8G
-            elif accel_range == self.ACCEL_RANGE_16G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_16G
-            else:
-                print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
-
-            
-            x = x / accel_scale_modifier - self.X_OFFSET
-            y = y / accel_scale_modifier - self.Y_OFFSET
-            z = z / accel_scale_modifier - self.Z_OFFSET
-
-            accel_scale_modifier = None
-            accel_range = self.read_accel_range(True)
-
-            if accel_range == self.ACCEL_RANGE_2G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
-            elif accel_range == self.ACCEL_RANGE_4G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_4G
-            elif accel_range == self.ACCEL_RANGE_8G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_8G
-            elif accel_range == self.ACCEL_RANGE_16G:
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_16G
-            else:
-                print("Unkown range - accel_scale_modifier set to self.ACCEL_SCALE_MODIFIER_2G")
-                accel_scale_modifier = self.ACCEL_SCALE_MODIFIER_2G
-
-            x = x / accel_scale_modifier
-            y = y / accel_scale_modifier
-            z = z / accel_scale_modifier
-            x = x * self.GRAVITIY_MS2
-            y = y * self.GRAVITIY_MS2
-            z = z * self.GRAVITIY_MS2
-
-            off1 += goal1 - x
-            off2 += goal2 - y
-            off3 += goal3 - z
-
-        off1 /= loops
-        off2 /= loops
-        off3 /= loops
-
-        return {'x': off1, 'y': off2, 'z': off3}
 
 if __name__ == "__main__":
     mpu = mpu6050(0x68)
