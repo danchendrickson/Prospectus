@@ -14,7 +14,7 @@
 
 import mpu6050 as mp
 from time import sleep
-import np
+#import np
 sensor = mp.mpu6050(0x68)
 
 for i in range(1250):
