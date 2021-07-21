@@ -20,13 +20,13 @@ GB = 2
 while GB > 1:
     Results = []
 
-    NextFileName = '/home/pi/AccelData/60kAccel-'+time.strftime('%y%m%d-%H%M')
+    NextFileName = '/home/pi/AccelData/60kGyro-'+time.strftime('%y%m%d-%H%M')
     FileStart = time.time()
 
     for i in range(60000):
-        gx, gy, gz = sensor.get_accel_data(True)
-        #tx, ty, tz = sensor.get_gyro_data()
-        Results.append([float(int((time.time()-FileStart) * 1000.0))/1000.0, gx, gy, gz])
+        #gx, gy, gz = sensor.get_accel_data(True)
+        tx, ty, tz = sensor.get_gyro_data()
+        Results.append([float(int((time.time()-FileStart) * 1000.0))/1000.0, tx, ty, tz])
         time.sleep(0.0001)
 
     Results = np.matrix(Results)
@@ -40,7 +40,7 @@ while GB > 1:
     print(j, (time.time()-start) / 60.0)
     j+=1
 
-    zip_file = zipfile.ZipFile(NextFileName+'a.zip', 'w')
+    zip_file = zipfile.ZipFile(NextFileName+'.zip', 'w')
     zip_file.write(NextFileName+'.csv', compress_type=zipfile.ZIP_DEFLATED)
     zip_file.close()
     
