@@ -74,6 +74,20 @@
 \abbreviations{IR,NMR,UV}
 \keywords{Helmholtz, Waves, Scatter}
 
+% Count of words
+
+\immediate\write18{texcount -inc -incbib 
+	-sum borra.tex > /tmp/wordcount.tex}
+\newcommand\wordcount{
+	\verbatiminput{/tmp/wordcount.tex}}
+
+% Count of characters
+
+\immediate\write18{texcount -char -freq
+	Prospectus.tex > /tmp/charcount.tex}
+\newcommand\charcount{
+	\verbatiminput{/tmp/charcount.tex}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The manuscript does not need to include \maketitle, which is
 %% executed automatically.
@@ -107,24 +121,82 @@ Do the Prospectus thing so I can get to the next level at school
 %% Start the main part of the manuscript here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Introduction}
-
-Here goes stuff about port and what we are doing
 
 
 \pagebreak
-\section{Chapter 1: Starts Here}
- Beginning TExt
+\section{Chapter 1: Introduction, Statement of Problem}
+The Port of Virginia is the 5th largest in the US, 3rd largest on East Coast.  2nd Largest single opperator in the US.
+
+In 2008 APM-T went live with a rail mounted gantry crane terminal in Portsmouth.  Virginia Port Authority took over running it in 2010.  That facility had 30 Rail Mounted Auto Stacking Cranes (ASC) in fifteen stacks.  These cranes are now 12 years into their expected 22 year life span, and are starting to see wear.  The operational model pioneered by the facility, now called Virginia International Gateway (VIG) was so succesfull that the port replicated the system at Norfolk International Terminal (NIT) adding an addition 60 ASCs in 30 stacks.  Additional VIG was expanded with an additional 13 stacks with 26 ASCs.  At the time the expansion was annouced, the 86 ASCs ordered for VIG and NIT was the largest single order for cranes in the port industry history.
+
+The last NIT new ASC came online in December of 2020.  The fleet of 86 new and 30 original ASCs now cost the port over 17.5m in the first year with all 116. 
+
+Costs to operations of una=planned down time can also be significant.  While a ship is working, roughly 3 stacks are supporting each crane, and the contianers are needed in a specific order.  If a ASC were to break duing the opperation, it would cause the whole set of 6 ASCs to be down, and the Quay crane with 26 workers to have to wait for a repair.  This costs in order of 2,500 dollars an hour.  The 
 
 \pagebreak
-\section{Chapter 2: Next Part}
-\subsection{This is 2.1}
-Replicating figures from \cite{Anderson1950} on acoustic scattering from a fluid sphere in a fluid.  The first replcicates his Figure 3 
+\section{Chapter 2: Literature Review}
+\subsection{Elastadynamic Finite Integration Technique}
+Initially proposed in Marklien dissertation.  Lab at U of Aachen then extended use over th eyears.
+
+Used for several dissertations in the lab
+
+\subsection{Rail Structural Health Monitoring}
+Large problem using ultra sound.  Needed a whole train car full of racks fo comptuers
+
+\subsection{Ultrasonic Examination in Non-Destructive Evaluation}
+raliegh waves, crack detection
+
+lamb waves in plates
+
+\subsection{Evolution of Available Sensors and Edge Computing techniques}
+Sensor technlowgy with MEMss accelerometers and gyroscopes in the late 90s
+
+Edge computering and fog through the naughts
+
+
+\pagebreak
+\section{Chapter 3: Methods Proposed}
+\subsection{Data Collection}
+
+Sensors on cranes, accerlations in motion for problems.
+
+Add in wave detection on rails
+
+Potentially add in vibration / frequency detection in cranes.
+
+\subsection{Data Preperation}
+Manually label acceleration curves for a number of the files.  Label as Accelerationg, Coasting, Decellerationg, Idling.  Then train a Neural Network to automatically segment each acceleration into the 4 types, properly labeling them.  I will then be able to use that network to label all 3 months of data.  Next step will be affixing any additional metadata that are available to those segmented sections.
+
+\subsection{New Analysis Technique}
+Wavlet based on single directional distribution.  Will alow analysis of near recent history.  Current wavelet needs to analyse a whole singal, this will allow the analysis of a live stream of data.
+
+\subsection{Comparative Analysis techniques}
+Pit my new Wavelet against the standandard Wavlet based approaches
+
+Also compare against a straight RNN, LSTM or other neurnal network
+
+Also compare against a combined RNN on output measures and small feature selctions based on my new wavelet, standard wavelets. and straight RNN
+
+\pagebreak
+\section{Chapter 4: Approach and Pilot Data}
+
+Initially a acceleration cencor was couple dwith a Raspbery Pi and placed in the House of an ASC.  The sensor has then been moved in between multiple cranes.  Over the course of the several months that the sensor has been collecting data, it has been on tracks before and after they were ground for smoothness.  
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Figures/Average Smoothed Acceleration Curve"}
+	\caption[Sample Acceleration]{This shows the smoothed (50 point averaging) acceleration in the dimmension roughly parallele to the crane track.  The periods of acceleration, coasting, decceleration, and idling can be clearly seen.  The Standard Deviation of the noise over a 50 point period is also shown, this is used as an initial measure of the roughness of the track}
+	\label{fig:Sample-Acceleration-Curve}
+\end{figure}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The "Acknowledgement" section can be given in all manuscript
 %% classes.  This should be given within the "acknowledgement"
 %% environment, which will make the correct section or running title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
 \begin{acknowledgement}
 
 The author thanks his wife for supporting him and not murdering him in his sleep for the insurance money.  His kids, Will, Liz, and Luke for being supportive, interested, and only distracting him sometimes with board games and minecraft.  Also would like to thank Wikipedia for actually getting people to contribute useful information.  He also thanks Mark Thorsen the CIO of the port for allowing him to install whatever software he wants on the computer withouth having to go back to helpdesk, allowing him to try 15 different LATEX editors before settling on this one, 4 different python IDEs, and 2 different version management systems.
@@ -152,5 +224,10 @@ The following files are available free of charge.
 %% and also names the section correctly.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{Prospectusbib}
+	
+\subsubsection*{Counts of words} 
+\wordcount
+
+%TC:endignore   
 
 \end{document}
