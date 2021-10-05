@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.18)  22 SEP 2021 17:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.4.18)  3 OCT 2021 12:50
 entering extended mode
 **./Prospectus.tex
 (Prospectus.tex
@@ -631,30 +631,23 @@ G,.JBIG2,.JB2,.eps]
 
 (C:\Program Files\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-)))
-runsystem(texcount -inc -incbib -sum borra.tex > /tmp/wordcount.tex)...disabled
- (restricted).
-
-runsystem(texcount -char -freq Prospectus.tex > /tmp/charcount.tex)...disabled 
-(restricted).
-
- (Prospectus.aux)
+))) (Prospectus.aux)
 \openout1 = `Prospectus.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
-LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
 \openout3 = `acs-Prospectus.bib'.
 
 
@@ -709,22 +702,64 @@ Package caption Info: End \AtBeginDocument code.
 \makeMPintoPDFobject=\count319
 \everyMPtoPDFconversion=\toks45
 )
-LaTeX Font Info:    Trying to load font information for T1+cmss on input line 9
-5.
+LaTeX Font Info:    Trying to load font information for T1+cmss on input line 8
+2.
  (C:\Program Files\MiKTeX\tex/latex/base\t1cmss.fd
 File: t1cmss.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ) [1
 
 {C:/Users/Hendrickson/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2] [3] [
 4]
-<Figures/Average Smoothed Acceleration Curve.png, id=28, 409.0482pt x 237.7683p
+<Figures/Pi on Shelf.jpg, id=29, 4047.12pt x 3035.34pt>
+File: Figures/Pi on Shelf.jpg Graphic file (type jpg)
+<use Figures/Pi on Shelf.jpg>
+Package pdftex.def Info: Figures/Pi on Shelf.jpg  used on input line 159.
+(pdftex.def)             Requested size: 328.82733pt x 246.58371pt.
+ [5 <./Figures/Pi on Shelf.jpg>]
+<Figures/wavelet_families.png, id=33, 1148.29pt x 570.13pt>
+File: Figures/wavelet_families.png Graphic file (type png)
+<use Figures/wavelet_families.png>
+Package pdftex.def Info: Figures/wavelet_families.png  used on input line 176.
+(pdftex.def)             Requested size: 328.82733pt x 163.26299pt.
+ [6]
+<Figures/Gassian Wavelet with Carrier.png, id=38, 780.516pt x 459.1554pt>
+File: Figures/Gassian Wavelet with Carrier.png Graphic file (type png)
+<use Figures/Gassian Wavelet with Carrier.png>
+Package pdftex.def Info: Figures/Gassian Wavelet with Carrier.png  used on inpu
+t line 184.
+(pdftex.def)             Requested size: 328.82733pt x 193.43947pt.
+<Figures/Beta Wavelet.png, id=39, 780.9978pt x 459.1554pt>
+File: Figures/Beta Wavelet.png Graphic file (type png)
+<use Figures/Beta Wavelet.png>
+Package pdftex.def Info: Figures/Beta Wavelet.png  used on input line 193.
+(pdftex.def)             Requested size: 328.82733pt x 193.32036pt.
+ [7 <./Figures/wavelet_families.png>] [8 <./Figures/Gassian Wavelet with Carrie
+r.png> <./Figures/Beta Wavelet.png>] [9]
+<Figures/Average Smoothed Acceleration Curve.png, id=58, 482.0409pt x 271.0125p
 t>
 File: Figures/Average Smoothed Acceleration Curve.png Graphic file (type png)
 <use Figures/Average Smoothed Acceleration Curve.png>
 Package pdftex.def Info: Figures/Average Smoothed Acceleration Curve.png  used 
-on input line 187.
-(pdftex.def)             Requested size: 328.82733pt x 191.14366pt.
- [5 <./Figures/Average Smoothed Acceleration Curve.png>] (Prospectus.bbl
+on input line 223.
+(pdftex.def)             Requested size: 328.82733pt x 184.87326pt.
+
+
+LaTeX Warning: Reference `fig:Smoothed_StdDev' on page 10 undefined on input li
+ne 228.
+
+[10 <./Figures/Average Smoothed Acceleration Curve.png>]
+<Figures/Smoothed and StdDev.png, id=64, 482.0409pt x 271.0125pt>
+File: Figures/Smoothed and StdDev.png Graphic file (type png)
+<use Figures/Smoothed and StdDev.png>
+Package pdftex.def Info: Figures/Smoothed and StdDev.png  used on input line 23
+2.
+(pdftex.def)             Requested size: 328.82733pt x 184.87326pt.
+<Figures/From24000to36000.png, id=65, 482.0409pt x 271.0125pt>
+File: Figures/From24000to36000.png Graphic file (type png)
+<use Figures/From24000to36000.png>
+Package pdftex.def Info: Figures/From24000to36000.png  used on input line 241.
+(pdftex.def)             Requested size: 328.82733pt x 184.87326pt.
+ [11 <./Figures/Smoothed and StdDev.png>] (Prospectus.bbl
 
 ! Package mciteplus Error: Entry Status for cite key `graff1991wave' under trac
 king ID `main' is undefined, treating it as a head entry.
@@ -755,6 +790,7 @@ s include the use of a cite command that is not mciteplus aware, the use of `\n
 ocite{*}', or a problem with the tracking ID and/or aux file handles. `\mciteEr
 rorOnUnknownfalse' can be used to disable this error message.
 
+[12 <./Figures/From24000to36000.png>]
 
 ! Package mciteplus Error: Entry Status for cite key `Johnson.Truell1965' under
  tracking ID `main' is undefined, treating it as a head entry.
@@ -800,58 +836,56 @@ s include the use of a cite command that is not mciteplus aware, the use of `\n
 ocite{*}', or a problem with the tracking ID and/or aux file handles. `\mciteEr
 rorOnUnknownfalse' can be used to disable this error message.
 
-[6])
-! Undefined control sequence.
-\wordcount -> \verbatiminput 
-                             {/tmp/wordcount.tex}
-l.229 \wordcount
-                
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-[7]
-<Figures/PortLogo.png, id=43, 119.69719pt x 45.16875pt>
+) [13]
+<Figures/PortLogo.png, id=78, 119.69719pt x 45.16875pt>
 File: Figures/PortLogo.png Graphic file (type png)
 <use Figures/PortLogo.png>
-Package pdftex.def Info: Figures/PortLogo.png  used on input line 233.
+Package pdftex.def Info: Figures/PortLogo.png  used on input line 284.
 (pdftex.def)             Requested size: 119.69688pt x 45.16862pt.
 
-Underfull \vbox (badness 10000) detected at line 233
+Underfull \vbox (badness 10000) detected at line 284
  []
 
-[8
+[14
 
- <./Figures/PortLogo.png>] (Prospectus.aux) ) 
+ <./Figures/PortLogo.png>] (Prospectus.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 17621 strings out of 479321
- 353476 string characters out of 2866483
- 635341 words of memory out of 3000000
- 34732 multiletter control sequences out of 15000+600000
+ 17674 strings out of 479321
+ 355036 string characters out of 2866483
+ 636328 words of memory out of 3000000
+ 34778 multiletter control sequences out of 15000+600000
  421000 words of font info for 62 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 102i,8n,131p,788b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
- <C:\Users\Hendrickson\AppData\Loc
-al\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\Hendrickson
-\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users
-\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.p
-k> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
-0\ecbx1728.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
-pen/ec/dpi600\ecrm1095.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/
-ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\Users\Hendrickson\AppData\Local\MiKT
-eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\Hendrickson\AppDat
-a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1200.pk> <C:\Users\Hendri
-ckson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecti1200.pk> <C:\
-Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1
-000.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/
-dpi600\ecss1440.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/
-jknappen/ec/dpi600\ecsx2074.pk><C:/Program Files/MiKTeX/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb>
-Output written on Prospectus.pdf (8 pages, 524032 bytes).
+ 102i,8n,131p,943b,458s stack positions out of 5000i,500n,10000p,200000b,80000s
+ <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi60
+0\ecbx1200.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tcrm1200.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/
+ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\Hendrickson\AppData\Local\MiKT
+eX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\Hendrickson\AppDat
+a\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\Hendri
+ckson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1095.pk> <C:\
+Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1
+200.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/
+dpi600\ecss1200.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\fonts/pk/ljfour/
+jknappen/ec/dpi600\ecti1200.pk> <C:\Users\Hendrickson\AppData\Local\MiKTeX\font
+s/pk/ljfour/jknappen/ec/dpi600\ecss1000.pk> <C:\Users\Hendrickson\AppData\Local
+\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss1440.pk> <C:\Users\Hendrickson\A
+ppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecsx2074.pk><C:/Program 
+Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Program Files/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfon
+ts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.p
+fb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on Prospectus.pdf (14 pages, 15962768 bytes).
 PDF statistics:
- 385 PDF objects out of 1000 (max. 8388607)
+ 425 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
