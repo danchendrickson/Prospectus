@@ -113,7 +113,12 @@ Do the Prospectus thing so I can get to the next level at school
 \pagebreak
 \section{Chapter 1: Introduction, Statement of Problem}
 The Port of Virginia is the 5th largest in the US, 3rd largest on East Coast. 2nd Largest single operator in the US. In 2008 APM-T went live with a rail mounted gantry crane terminal in Portsmouth. Virginia Port Authority took over running it in 2010. That facility had 30 Rail Mounted Auto Stacking Cranes (ASC) in fifteen stacks. These cranes are now 12 years into their expected 22 year life span, and are starting to see wear. 
-
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{"Figures/Pi on Shelf"}
+	\caption[Sensor on a Shelf in the ASC House]{The Raspberry Pi 3+ with a MPU 6050 3 axis gyroscope and 3 axis accelerometer mounted in the case is installed on a shelf in the electrical house on the ASC.  The house is 6 feet off the ground, and this shelf is 7feet above the floor of the house.  The shelf has a UPS system should poewer fail.  The Pi is zip tied to a rigid electric conduit}
+	\label{fig:mounted_pi}
+\end{figure}
 The operational model pioneered by the facility, now called Virginia International Gateway (VIG) was so successful that the port replicated the system at Norfolk International Terminal (NIT) adding an addition 60 ASCs in 30 stacks. Also, VIG was expanded with an additional 13 stacks with 26 ASCs. At the time the expansion was announced, the 86 ASCs ordered for VIG and NIT was the largest single order for cranes in the port industry history. These two projects represented investments of \$460m and \$320m respectively.  The last NIT new ASC came online in December of 2020. 
 
 Now in full operation, and with 10 months of data, the fleet of 86 new and 30 original ASCs will cost the port over \$17.5m in maintenance expenses. There is additional costs to team operating the terminal that can be significant. While a ship is working, roughly 3 stacks are supporting each crane, and the containers are needed in a specific order. If an ASC were to break during the operation, a the Quay crane with 26 workers has to have to wait for a repair. This costs in order of \$2,500 an hour during the day, and \$3,750 an hour nights and weekends.
@@ -122,6 +127,14 @@ Now in full operation, and with 10 months of data, the fleet of 86 new and 30 or
 \pagebreak
 \section{Chapter 2: Literature Review}
 \subsection{Elastadynamic Finite Integration Technique}
+Elastadynamic Finite Integration Technique (EFIT) is a methodology for simulating elastic and acoustic waves as they pass through medium.  It uses a discretized grid of points representing small cubes on which the stresses and motion the elastic waves work.  The elastic waves are given by the field equations:
+\begin{equation}
+	\rho \frac{\partial v_i}{\partial t} - \frac{\partial}{\partial i}\sigma_{ij} = F_i
+\end{equation}
+Where $\rho$ is the initial at rest density of the material.  Density times time derivative of velocicity is clearly the equivlant to $F=ma$ for the unit volume.  $\sigma_{ij}$ is the stress on the i dimmensional face in the j direction.  When i = j it is the normal stress, and when i =\= j it is the shear stresses.  F is the force applied in the i dimenssion. 
+
+
+For the gird to conduct the 
 Initially proposed in Fellinger in his dissertation in 1991.  He was a student at the University of Kassel, Department of Electrical Engineering/Computer Science.  His work was then extended by . Used for several dissertations in the lab 
 Started with Jill Bingham’s dissertation 2008
 •         Read Fellinger 1995
