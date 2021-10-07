@@ -64,7 +64,7 @@
 %% optional argument to \title.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[Research Prospecutus]
-  {Plan for research on Rail Mounted Gantry Crane Structural Health Montitoring and Non Destructive Evaluation}
+  {Plan for research on Rail Mounted Gantry Crane Structural Health Monitoring and Non Destructive Evaluation}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Some journals require a list of abbreviations or keywords to be
@@ -115,9 +115,9 @@ Do the Prospectus thing so I can get to the next level at school
 The Port of Virginia is the 5th largest in the US, 3rd largest on East Coast. 2nd Largest single operator in the US. In 2008 APM-T went live with a rail mounted gantry crane terminal in Portsmouth. Virginia Port Authority took over running it in 2010. That facility had 30 Rail Mounted Auto Stacking Cranes (ASC) in fifteen stacks. These cranes are now 12 years into their expected 22 year life span, and are starting to see wear. 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{"Figures/Pi on Shelf"}
-	\caption[Sensor on a Shelf in the ASC House]{The Raspberry Pi 3+ with a MPU 6050 3 axis gyroscope and 3 axis accelerometer mounted in the case is installed on a shelf in the electrical house on the ASC.  The house is 6 feet off the ground, and this shelf is 7feet above the floor of the house.  The shelf has a UPS system should poewer fail.  The Pi is zip tied to a rigid electric conduit}
-	\label{fig:mounted_pi}
+	\includegraphics[width=0.7\linewidth]{"Figures/VIG Overview"}
+	\caption[VIG Terminal Areal Image]{The Virginia International Gateway terminal in Portsmouth, Virginia is capable of handling 1.2 million containers per year.  The 28 stacks of containers in the yard are managed by 56 Automatic Stacking Cranes (ASC) that work in a semi-automated manner.  This image is rotated by -90 degrees, to fit on the page.  The top of the image is the water front, where the berth is capable of holding 3 neo-post-panamax container ships and loading and unloading them with 12 ship to shore cranes, 4 of which were the largest in the Western Hemisphere when installed, and remain the largest on the East Coast of North America.}
+	\label{fig:VIG_overhead}
 \end{figure}
 The operational model pioneered by the facility, now called Virginia International Gateway (VIG) was so successful that the port replicated the system at Norfolk International Terminal (NIT) adding an addition 60 ASCs in 30 stacks. Also, VIG was expanded with an additional 13 stacks with 26 ASCs. At the time the expansion was announced, the 86 ASCs ordered for VIG and NIT was the largest single order for cranes in the port industry history. These two projects represented investments of \$460m and \$320m respectively.  The last NIT new ASC came online in December of 2020. 
 
@@ -126,28 +126,26 @@ Now in full operation, and with 10 months of data, the fleet of 86 new and 30 or
 
 \pagebreak
 \section{Chapter 2: Literature Review}
-\subsection{Elastadynamic Finite Integration Technique}
-Elastadynamic Finite Integration Technique (EFIT) is a methodology for simulating elastic and acoustic waves as they pass through medium.  It uses a discretized grid of points representing small cubes on which the stresses and motion the elastic waves work.  The elastic waves are given by the field equations:
+\subsection{Electrodynamics Finite Integration Technique}
+Electrodynamics Finite Integration Technique (EFIT) is a methodology for simulating elastic and acoustic waves as they pass through medium.  It uses a discretized grid of points representing small cubes on which the stresses and motion the elastic waves work.  The elastic waves are given by the field equations:
 \begin{equation}
 	\rho \frac{\partial v_i}{\partial t} - \frac{\partial}{\partial i}\sigma_{ij} = F_i
 \end{equation}
-Where $\rho$ is the initial at rest density of the material.  Density times time derivative of velocicity is clearly the equivlant to $F=ma$ for the unit volume.  $\sigma_{ij}$ is the stress on the i dimmensional face in the j direction.  When i = j it is the normal stress, and when i =\= j it is the shear stresses.  F is the force applied in the i dimenssion. 
+Where $\rho$ is the initial at rest density of the material.  Density times time derivative of velocity is clearly the equivalent to $F=ma$ for the unit volume.  $\sigma_{ij}$ is the stress on the i dimensional face in the j direction.  When i = j it is the normal stress, and when i =\= j it is the shear stresses.  F is the force applied in the i dimension. 
 
-
-For the gird to conduct the 
-Initially proposed in Fellinger in his dissertation in 1991.  He was a student at the University of Kassel, Department of Electrical Engineering/Computer Science.  His work was then extended by . Used for several dissertations in the lab 
-Started with Jill Bingham’s dissertation 2008
-•         Read Fellinger 1995
-o   Still awaiting library to find Fellinger’s Phd from 1991
-•         Read Marklien’s 2002 chapter on EFIT, AFIT and EM FIT.
-•         Read Madariaga’s 1976 paper on Finite Difference Time Domain elastic equations in 2d circular, it is credited by Marklien for introducing staggered grid to elastic dynamics
+The grid for the Stresses and the Velocities can be set up with the centers on each other’s vertices of the cubes.  This allows the current velocity to be calculated by the change in velocity, which is calculated by the stresses a the previous half time step.
+In turn, the stresses can be calculated by the form stresses, plus the change in stresses calculated by the velocities at the last half time step.
+In this fashion, the whole time series can be calculated one by half stepping through time, calculating the stresses and then velocities in turn.
+Initially proposed in Fellinger \cite{fellinger_numerical_1995} in his dissertation in 1991.  He was a student at the University of Kassel, Department of Electrical Engineering/Computer Science.  The work was inspired by the dual grid integration half step through time developed for Electromagnetic by Yee\cite{kane_yee_numerical_1966}.  It was also built off of Maradiaga \cite{madariaga_dynamics_1976} who first used a dual staggered grid system for electrodynamics in two dimensions, but with a finite difference method, as opposed to finite integration.  Marklien, a subsequent student in the University of Kassel, wrote a chapter on EM FIT, EFIT, and AFIT\cite{marklein_11_nodate}, laying out the three methods, and the similarities in the algorithm’s and techniques.  
+Bingham in 2008\cite{bingham_ultrasonic_2008} wrote EFIT code to run in a highly paralyzed environment.  She also was able to show the ability to make complex shapes with shared features that could run efficiently, and be displayed clearly.  The data for elastic waves running through aircraft structural stringers closely matched experimental results.  Bingham did follow on work on more efficient parallel algorithms for EFIT in
+Lecky\cite{leckey_multiple-mode_2012} followed on Bingham’s work and created 3D ultra sound simulations and modeled Lamb waves and their multiple modes.  The Lamb wave simulation via EFIT was able to show the expected separation between multiple modes.  It also matched experimental data where a metal plate was intentionally damaged.  The model then was able to be used to represent other damage systems.
 
 
 \subsection{Rail Structural Health Monitoring}
-Largly currently conducted using ultra sound. Historically needed a whole train car full of racks for computers, now can be done on a small human portable rolling cane.
+Largely currently conducted using ultra sound. Historically needed a whole train car full of racks for computers, now can be done on a small human portable rolling cane.
 
-Found an article that summarize the current state of ultrasonics in rail heal monitoring, published earlier this year (Bombarda 2021). The paper is focused on Ultrasonic methods and does not include the Eddy Current methods.
-Next I am reading one of his cites, a state of the field written in 2014 (Rizzo 2014).  
+Found an article that summarize the current state of ultrasonics in rail heal monitoring, published earlier this year by Bombarda\cite{bombarda_rail_2021}. The paper is focused on Ultrasonic methods and does not include the Eddy Current methods.
+Next I am reading one of his cites, a state of the field written in 2014 by Rizzo\cite{rizzo_sensing_2014}.  
 
 
 \subsection{Ultrasonic Examination in Non-Destructive Evaluation}
@@ -158,7 +156,7 @@ Started with Rose 2002
 
 
 \subsection{Evolution of Available Sensors and Edge Computing techniques}
-Sensor technology with MEMs accelerometers and gyroscopes in the late 90s Edge computing and fog through the early 2000s
+Sensor technology with MEMs accelerators and gyroscopes in the late 90s Edge computing and fog through the early 2000s
 
 
 \pagebreak
@@ -170,19 +168,19 @@ Preliminary data collection has been begun with a 3 axis acceleration sensor and
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Figures/Pi on Shelf"}
-	\caption[Sensor on a Shelf in the ASC House]{The Raspberry Pi 3+ with a MPU 6050 3 axis gyroscope and 3 axis accelerometer mounted in the case is installed on a shelf in the electrical house on the ASC.  The house is 6 feet off the ground, and this shelf is 7feet above the floor of the house.  The shelf has a UPS system should poewer fail.  The Pi is zip tied to a rigid electric conduit}
+	\caption[Sensor on a Shelf in the ASC House]{The Raspberry Pi 3+ with a MPU 6050 3 axis gyroscope and 3 axis accelerator mounted in the case is installed on a shelf in the electrical house on the ASC.  The house is 6 feet off the ground, and this shelf is 7feet above the floor of the house.  The shelf has a UPS system should power fail.  The Pi is zip tied to a rigid electric conduit}
 	\label{fig:mounted_pi}
 \end{figure}
 
-In the future there is potential to permanently mount a computer in the equipment house connected to acceleration sensors installed closer to the wheels and tracks.  The crane has 10GBs fibre connection to the port’s network that can be used to collect data, instead of the manual method currently.  The total generated would be too large for the network as a whole, even though a small percentage of each link.  Data could be stored on the crane for a rolling 14 days, and data only pulled remotely when there has been an event that is to be studied.
+In the future there is potential to permanently mount a computer in the equipment house connected to acceleration sensors installed closer to the wheels and tracks.  The crane has 10GBs fiber connection to the port’s network that can be used to collect data, instead of the manual method currently.  The total generated would be too large for the network as a whole, even though a small percentage of each link.  Data could be stored on the crane for a rolling 14 days, and data only pulled remotely when there has been an event that is to be studied.
 
 Additional vibration, ultrasound, or acceleration sensors as discussed above could be placed directly on the rails.  The end of the rail is exposed and above ground.  Potentially sensors can be mounted on the surface, the web, the end, and bottom of the rail looking for different signals.  Further analysis can be conducted with standard ultrasound equipment such as a rail analysis walking stick discussed above.
 
-\subsection{Data Preperation}
+\subsection{Data Preparation}
 Manually label acceleration curves for a number of the les. Label as Acceleration, Coasting, Decelerating, Idling. Then train a Neural Network to automatically segment each acceleration into the 4 types, properly labeling them. I will then be able to use that network to label all 3 months of data. Next step will be a xing any additional metadata that are available to those segmented sections. 
 
 \subsection{Analysis Technique}
-Standard wavelet families are made to analyze a whole signal, and work across portions of a signal.  Examples of Wavelet familes are seen in figure \ref{fig:wavelet_families}.  
+Standard wavelet families are made to analyze a whole signal, and work across portions of a signal.  Examples of Wavelet families are seen in figure \ref{fig:wavelet_families}.  
 
 \begin{figure}
 	\centering
@@ -195,7 +193,7 @@ Wavelets are made up of a carrier signal and a changeable signal.  The Gaussian 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Figures/Gassian Wavelet with Carrier"}
-	\caption[Gaussian Wavelet]{The Gaussian Wavelet uses the Gaussian Distrobbution, also known as the normal Distrobution, as it's carrier signal.  The standard deviation $\sigma$ of the function is the primary feature of the distrobution that is changed.  The mean is kept at 0 for all members of the family.  The carrier signal shown here is a simple sine wave.  When the two are multiplied together the Gaussian Distrobution is created.}
+	\caption[Gaussian Wavelet]{The Gaussian Wavelet uses the Gaussian Distribution, also known as the normal Distribution, as it's carrier signal.  The standard deviation $\sigma$ of the function is the primary feature of the distribution that is changed.  The mean is kept at 0 for all members of the family.  The carrier signal shown here is a simple sine wave.  When the two are multiplied together the Gaussian Distribution is created.}
 	\label{fig:gaussian_wavelet}
 \end{figure}
 
@@ -204,7 +202,7 @@ Through the research different wavelet families will be experimented with, and t
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Figures/Beta Wavelet"}
-	\caption[Beta Wavelet]{The Beta Wavelet carrrier signal is a Beta Distrobution.  In this example with $\alpha$ given by 2 and $\beta$ by 5.  The carrier is then pultiplied by a sine wave, to give the Wavelet.  In this case, the Carrier signal uses the variable -x, allowing the processing of the historic signal only.}
+	\caption[Beta Wavelet]{The Beta Wavelet carrier signal is a Beta Distribution.  In this example with $\alpha$ given by 2 and $\beta$ by 5.  The carrier is then multiplied by a sine wave, to give the Wavelet.  In this case, the Carrier signal uses the variable -x, allowing the processing of the historic signal only.}
 	\label{fig:beta_wavelet}
 \end{figure}
 
@@ -224,7 +222,7 @@ This will then be used in conjunction with the Dynamic Wavelet Fingerprinting te
 
 
 \subsection{Comparative Analysis techniques}
-Pit my new Wavelet against the standard Wavelet based approaches.  How does a live signal processing wavelet work against the full signal analysis standard wavelets in DWFP.  We will also run the direct signal into Recurrent Neural networks and attempt to train on all of the dimensionality that is encompassed in the raw data.  There are several options for the type of RNN to use, either a Long Short Term Memory Model, or other types.  A third will compare feature selection out of the live Wavelet Fingerprint, RNNs trained on the resultant features. 
+Pit my new Wavelet against the standard Wavelet based approaches.  How does a live signal processing wavelet work against the full signal analysis standard wavelets in DWFP.  We will also run the direct signal into Recurrent Neural networks and attempt to train on all of the dimensional that is encompassed in the raw data.  There are several options for the type of RNN to use, either a Long Short Term Memory Model, or other types.  A third will compare feature selection out of the live Wavelet Fingerprint, RNNs trained on the resultant features. 
 
 \pagebreak
 \section{Chapter 4: Approach and Pilot Data}
@@ -234,16 +232,16 @@ Initially an acceleration sensor was coupled with a Raspberry Pi and placed in t
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Figures/Average Smoothed Acceleration Curve"}
-	\caption[Sample Acceleration]{This shows the original and the smoothed (50 point averaging) acceleration in the dimension roughly parallel to the crane track. The black line is the 50 point average smoothed signal, and the grey dashed line is the raw signal.  The periods of acceleration, coasting, deceleration, and idling can be clearly seen in the averaged signal. The amount of noise in the raw signal makes it very hard to detect direction of change of travel, but the smoothing allows for clear visual interpretation for what is happening at each section of movement.  The signal is from a series of movements delivering containers to be loaded onto a ship, in a stack where the track was known by the maintenance technicians to be in need of grinding.}
+	\caption[Sample Acceleration]{This shows the original and the smoothed (50 point averaging) acceleration in the dimension roughly parallel to the crane track. The black line is the 50 point average smoothed signal, and the gray dashed line is the raw signal.  The periods of acceleration, coasting, deceleration, and idling can be clearly seen in the averaged signal. The amount of noise in the raw signal makes it very hard to detect direction of change of travel, but the smoothing allows for clear visual interpretation for what is happening at each section of movement.  The signal is from a series of movements delivering containers to be loaded onto a ship, in a stack where the track was known by the maintenance technicians to be in need of grinding.}
 	\label{fig:Sample-Acceleration-Curve}
 \end{figure}
 
-To clean the signal, a standard deviation of the last 50 points was taken at each recording, seen in figure \ref{fig:Smoothed_StdDev}.  The cranes are all set to move at a full speed of 5 meters per second.  A difference in standard deviation ebtween the tracks will be good proxy for the roughness of the track, as felt at the sensor.  The signal when segmented for period of constant speed should be comprable between different cranes, and those with the higher standard deviation duringg movement are the ones likely in most needs of grinding.  Even on overall smooth tracks, if the locations of the movements are known, specific rough spots on the tracks can be isolated.
+To clean the signal, a standard deviation of the last 50 points was taken at each recording, seen in figure \ref{fig:Smoothed_StdDev}.  The cranes are all set to move at a full speed of 5 meters per second.  A difference in standard deviation between the tracks will be good proxy for the roughness of the track, as felt at the sensor.  The signal when segmented for period of constant speed should be comparable between different cranes, and those with the higher standard deviation during movement are the ones likely in most needs of grinding.  Even on overall smooth tracks, if the locations of the movements are known, specific rough spots on the tracks can be isolated.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"Figures/Smoothed and StdDev"}
-	\caption[Smoothed and StdDev]{Showing the same signal as figure 2, with the 50 point average smoothed signal in black, and the standard deviation of the original signal over time in dashed grey.  Since the initial goal of the preliminary research and data collection phase is to highlight tracks in need of grinding, the standard deviation of the signal is a good proxy for the roughness of the track.  Since all the cranes move at the same velocity, the differences in the standard deviation of the acceleration while they are at constant speed should indicate the roughness of the track that is transferred to the sensor.}
+	\caption[Smoothed and StdDev]{Showing the same signal as figure 2, with the 50 point average smoothed signal in black, and the standard deviation of the original signal over time in dashed gray.  Since the initial goal of the preliminary research and data collection phase is to highlight tracks in need of grinding, the standard deviation of the signal is a good proxy for the roughness of the track.  Since all the cranes move at the same velocity, the differences in the standard deviation of the acceleration while they are at constant speed should indicate the roughness of the track that is transferred to the sensor.}
 	\label{fig:Smoothed_StdDev}
 \end{figure}
 
@@ -265,7 +263,7 @@ Focussng on the area from 24,000 to 36,000 in the graph, there is a period of th
 \pagebreak
 \begin{acknowledgement}
 
-The author thanks his wife for supporting him and not murdering him in his sleep for the insurance money.  His kids, Will, Liz, and Luke for being supportive, interested, and only distracting him sometimes with board games and minecraft.  Also would like to thank Wikipedia for actually getting people to contribute useful information.  He also thanks Mark Thorsen the CIO of the port for allowing him to install whatever software he wants on the computer withouth having to go back to helpdesk, allowing him to try 15 different LATEX editors before settling on this one, 4 different python IDEs, and 2 different version management systems.
+The author thanks his wife for supporting him and not murdering him in his sleep for the insurance money.  His kids, Will, Liz, and Luke for being supportive, interested, and only distracting him sometimes with board games and minecraft.  Also would like to thank Wikipedia for actually getting people to contribute useful information.  He also thanks Mark Thorsen the CIO of the port for allowing him to install whatever software he wants on the computer without having to go back to helpdesk, allowing him to try 15 different LATEX editors before settling on this one, 4 different python IDEs, and 2 different version management systems.
 
 \end{acknowledgement}
 

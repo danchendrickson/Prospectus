@@ -8,7 +8,7 @@
 \providecommand*\mcitethebibliography{\thebibliography}
 \csname @ifundefined\endcsname{endmcitethebibliography}
   {\let\endmcitethebibliography\endthebibliography}{}
-\begin{mcitethebibliography}{6}
+\begin{mcitethebibliography}{7}
 \providecommand*\natexlab[1]{#1}
 \providecommand*\mciteSetBstSublistMode[1]{}
 \providecommand*\mciteSetBstMaxWidthForm[2]{}
@@ -26,38 +26,51 @@
   {\relax}
   {\relax}
 
-\bibitem[Graff(1991)]{graff1991wave}
-Graff,~K. \emph{Wave Motion in Elastic Solids}; Dover Books on Physics Series;
-  Dover Publications, 1991\relax
+\bibitem[Fellinger \latin{et~al.}(1995)Fellinger, Marklein, Langenberg, and
+  Klaholz]{fellinger_numerical_1995}
+Fellinger,~P.; Marklein,~R.; Langenberg,~K.; Klaholz,~S. Numerical modeling of
+  elastic wave propagation and scattering with {EFIT} — elastodynamic finite
+  integration technique. \emph{Wave Motion} \textbf{1995}, \emph{21},
+  47--66\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Anderson(1950)]{Anderson1950}
-Anderson,~V.~C. Sound Scattering from a Fluid Sphere. \emph{The Journal of the
-  Acoustical Society of America} \textbf{1950}, \emph{22}, 426--431\relax
+\bibitem[{Kane Yee}(1966)]{kane_yee_numerical_1966}
+{Kane Yee}, Numerical solution of initial boundary value problems involving
+  maxwell's equations in isotropic media. \emph{IEEE Transactions on Antennas
+  and Propagation} \textbf{1966}, \emph{14}, 302--307\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Johnson and Truell(1965)Johnson, and Truell]{Johnson.Truell1965}
-Johnson,~G.; Truell,~R. Numerical Computations of Elastic Scattering Cross
-  Sections. \emph{Journal of Applied Physics} \textbf{1965}, \emph{36},
-  3466--3475\relax
+\bibitem[Madariaga(1976)]{madariaga_dynamics_1976}
+Madariaga,~R. Dynamics of an expanding circular fault. \emph{Bulletin of the
+  Seismological Society of America} \textbf{1976}, \emph{66}, 639--666\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Hinders(1991)]{Hinders.1991-ImpedancePlane}
-Hinders,~B. D.~T.,~Mark;~Rhodes Impedance Plane Characterization of Elastic
-  Wave Scattering. \emph{Mechanics Research Laboratory} \textbf{1991}, \relax
-\mciteBstWouldAddEndPunctfalse
+\bibitem[Marklein()]{marklein_11_nodate}
+Marklein,~R. 11. {The} {Finite} {Integration} {Technique} as a {General} {Tool}
+  to {Compute} {Acoustic}, {Electromagnetic}, {Elastodynamic}, and {Coupled}
+  {Wave} {Fields}. 44\relax
+\mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
-{}{\mcitedefaultseppunct}\relax
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
 \EndOfBibitem
-\bibitem[Kerker and Press(1969)Kerker, and Press]{kerker1969scattering}
-Kerker,~M.; Press,~A. \emph{The Scattering of Light, and Other Electromagnetic
-  Radiation}; Physical chemistry; Academic Press, 1969\relax
+\bibitem[Bingham(2008)]{bingham_ultrasonic_2008}
+Bingham,~J.~P. Ultrasonic {Guided} {Wave} {Interpretation} for {Structural}
+  {Health} {Inspections}. {PhD} {Dissertation}, William and Mary, 2008\relax
+\mciteBstWouldAddEndPuncttrue
+\mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
+{\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
+\EndOfBibitem
+\bibitem[Leckey \latin{et~al.}(2012)Leckey, Rogge, Miller, and
+  Hinders]{leckey_multiple-mode_2012}
+Leckey,~C.~A.; Rogge,~M.~D.; Miller,~C.~A.; Hinders,~M.~K. Multiple-mode {Lamb}
+  wave scattering simulations using {3D} elastodynamic finite integration
+  technique. \emph{Ultrasonics} \textbf{2012}, \emph{52}, 193--207\relax
 \mciteBstWouldAddEndPuncttrue
 \mciteSetBstMidEndSepPunct{\mcitedefaultmidpunct}
 {\mcitedefaultendpunct}{\mcitedefaultseppunct}\relax
