@@ -4,9 +4,9 @@ sudo apt-get clean -y
 sudo apt autoremove  -y
 sudo apt-get --fix-missing -y
 sudo apt-get dist-upgrade -y
-sudo apt full-upgrade -y
+
 sudo apt-get install build-essential python-dev python-pip -y
-sudo apt-get install code -y
+sudo apt-get install code xrdp -y
 sudo apt-get install python-smbus -y
 
 sudo pip3 install numpy matplotlib RPi.GPIO pandas smbus2
