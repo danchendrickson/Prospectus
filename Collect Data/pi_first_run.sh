@@ -8,6 +8,7 @@ sudo apt-get dist-upgrade -y
 sudo apt-get install build-essential python-dev python-pip -y
 sudo apt-get install code xrdp -y
 sudo apt-get install python-smbus -y
+sudo apt-get remove python3-numpy -y
 
 sudo pip3 install numpy matplotlib RPi.GPIO pandas smbus2
 

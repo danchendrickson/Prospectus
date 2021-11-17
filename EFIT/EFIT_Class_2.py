@@ -379,7 +379,7 @@ class EFIT:
 
         Temp[:,:] = np.sin(frequency * t * np.pi) * EmitterPreasure
 
-        self.Gv[1,StartX:StartX+EmitterWidth,self.MaxY-2,StartZ:StartZ+EmitterWidth] += Temp * self.ts
+        self.Gv[1,StartX:StartX+EmitterWidth,self.MaxY-1,StartZ:StartZ+EmitterWidth] += Temp * self.ts
 
         return self
 

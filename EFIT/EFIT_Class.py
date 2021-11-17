@@ -95,209 +95,163 @@ class EFIT:
         
         Lame1=self.Gp[1,x,y,z]
         Lame2=self.Gp[2,x,y,z]
-        try:
-            if x == 0:
-                Ds[0,0] = 0
-            elif y==0 and z == 0:
-                Ds[0,0] = ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
-                        Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
-                        )
+        if x == 0:
+            Ds[0,0] = 0
+        elif y==0 and z == 0:
+            Ds[0,0] = ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
+                    Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
                     )
-            elif y==0:
-                Ds[0,0] = ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
-                        Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
-                        )
+                )
+        elif y==0:
+            Ds[0,0] = ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
+                    Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
                     )
-            elif z == 0:
-                Ds[0,0] = ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
-                        Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
-                        )
+                )
+        elif z == 0:
+            Ds[0,0] = ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
+                    Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
                     )
-            else:
-                Ds[0,0] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
-                        Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
-                        )
+                )
+        else:
+            Ds[0,0] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]) +
+                    Lame1*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
                     )
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds00',x,y,z)
-                Ds[0,0]=0
+                )
         
-        try:
-            if y == 0:
-                Ds[1,1] = 0
-            elif x==0 and z == 0:
-                Ds[1,1] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
-                        )
-                    )                
-            elif x == 0:
-                Ds[1,1] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
-                        )
+        if y == 0:
+            Ds[1,1] = 0
+        elif x==0 and z == 0:
+            Ds[1,1] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
                     )
-            elif z == 0:
-                Ds[1,1] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
-                        )
+                )                
+        elif x == 0:
+            Ds[1,1] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
                     )
-            else:                
-                Ds[1,1] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
-                        )
+                )
+        elif z == 0:
+            Ds[1,1] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z+1])
                     )
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds11',x,y,z)
-                Ds[1,1]=0        
+                )
+        else:                
+            Ds[1,1] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1])
+                    )
+                )
 
-        try:
-            if z == 0:
-                Ds[2,2]=0
-            elif x == 0 and y == 0:
-                Ds[2,2] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z])
-                        )
+        if z == 0:
+            Ds[2,2]=0
+        elif x == 0 and y == 0:
+            Ds[2,2] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z])
                     )
-            elif x == 0:
-                Ds[2,2] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z])
-                        )
+                )
+        elif x == 0:
+            Ds[2,2] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x+1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z])
                     )
-            elif y == 0:
-                Ds[2,2] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z])
-                        )
+                )
+        elif y == 0:
+            Ds[2,2] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y+1,z])
                     )
-            else:
-                Ds[2,2] =  ((1/self.__ds) *
-                    ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
-                        Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z])
-                        )
+                )
+        else:
+            Ds[2,2] =  ((1/self.__ds) *
+                ((Lame1+2*Lame2)*(self.Gv[2,x,y,z]-self.Gv[2,x,y,z-1]) +
+                    Lame1*(self.Gv[0,x,y,z]-self.Gv[0,x-1,y,z]+self.Gv[1,x,y,z]-self.Gv[1,x,y-1,z])
                     )
+                )
     
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds22',x,y,z)
-                Ds[2,2]=0        
-
-        try:
-            if x == self.__MaxX and y == self.__MaxY:
-                Ds[0,1] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x-1,y-1,z]))) *
-                    (self.Gv[0,x,y-1,z]-self.Gv[0,x,y,z] +self.Gv[1,x-1,y,z]-self.Gv[1,x,y,z] )
-                    )
-            elif x == self.__MaxX:
-                Ds[0,1] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x-1,y+1,z]))) *
-                    (self.Gv[0,x,y+1,z]-self.Gv[0,x,y,z] +self.Gv[1,x-1,y,z]-self.Gv[1,x,y,z] )
-                    )
-            elif y == self.__MaxY:
-                Ds[0,1] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x+1,y-1,z]))) *
-                    (self.Gv[0,x,y-1,z]-self.Gv[0,x,y,z] +self.Gv[1,x+1,y,z]-self.Gv[1,x,y,z] )
-                    )
-            else:
-                Ds[0,1] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x+1,y+1,z]))) *
-                    (self.Gv[0,x,y+1,z]-self.Gv[0,x,y,z] +self.Gv[1,x+1,y,z]-self.Gv[1,x,y,z] )
-                    )
-
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds01',x,y,z)
-                Ds[0,1]=0  
+        if x == self.__MaxX and y == self.__MaxY:
+            Ds[0,1] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x-1,y-1,z]))) *
+                (self.Gv[0,x,y-1,z]-self.Gv[0,x,y,z] +self.Gv[1,x-1,y,z]-self.Gv[1,x,y,z] )
+                )
+        elif x == self.__MaxX:
+            Ds[0,1] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x-1,y+1,z]))) *
+                (self.Gv[0,x,y+1,z]-self.Gv[0,x,y,z] +self.Gv[1,x-1,y,z]-self.Gv[1,x,y,z] )
+                )
+        elif y == self.__MaxY:
+            Ds[0,1] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x+1,y-1,z]))) *
+                (self.Gv[0,x,y-1,z]-self.Gv[0,x,y,z] +self.Gv[1,x+1,y,z]-self.Gv[1,x,y,z] )
+                )
+        else:
+            Ds[0,1] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x+1,y+1,z]))) *
+                (self.Gv[0,x,y+1,z]-self.Gv[0,x,y,z] +self.Gv[1,x+1,y,z]-self.Gv[1,x,y,z] )
+                )
         Ds[1,0]=Ds[0,1]      
 
-        try:
-            if x == self.__MaxX and z == self.__MaxZ:
-                Ds[0,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x-1,y,z-1]))) *
-                    (self.Gv[0,x,y,z-1]-self.Gv[0,x,y,z] +self.Gv[2,x-1,y,z]-self.Gv[2,x,y,z] )
-                    )
-            elif x == self.__MaxX:
-                Ds[0,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x-1,y,z+1]))) *
-                    (self.Gv[0,x,y,z+1]-self.Gv[0,x,y,z] +self.Gv[2,x-1,y,z]-self.Gv[2,x,y,z] )
-                    )
-            elif z == self.__MaxZ:
-                Ds[0,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x+1,y,z-1]))) *
-                    (self.Gv[0,x,y,z-1]-self.Gv[0,x,y,z] +self.Gv[2,x+1,y,z]-self.Gv[2,x,y,z] )
-                    )
-            else:
-                Ds[0,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x+1,y,z+1]))) *
-                    (self.Gv[0,x,y,z+1]-self.Gv[0,x,y,z] +self.Gv[2,x+1,y,z]-self.Gv[2,x,y,z] )
-                    )
-
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds02',x,y,z)
-                Ds[0,2]=0        
+        if x == self.__MaxX and z == self.__MaxZ:
+            Ds[0,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x-1,y,z-1]))) *
+                (self.Gv[0,x,y,z-1]-self.Gv[0,x,y,z] +self.Gv[2,x-1,y,z]-self.Gv[2,x,y,z] )
+                )
+        elif x == self.__MaxX:
+            Ds[0,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x-1,y,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x-1,y,z+1]))) *
+                (self.Gv[0,x,y,z+1]-self.Gv[0,x,y,z] +self.Gv[2,x-1,y,z]-self.Gv[2,x,y,z] )
+                )
+        elif z == self.__MaxZ:
+            Ds[0,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x+1,y,z-1]))) *
+                (self.Gv[0,x,y,z-1]-self.Gv[0,x,y,z] +self.Gv[2,x+1,y,z]-self.Gv[2,x,y,z] )
+                )
+        else:
+            Ds[0,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x+1,y,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x+1,y,z+1]))) *
+                (self.Gv[0,x,y,z+1]-self.Gv[0,x,y,z] +self.Gv[2,x+1,y,z]-self.Gv[2,x,y,z] )
+                )
         Ds[2,0]=Ds[0,2]
-        
-        try:
-            if y == self.__MaxY  and z == self.__MaxZ:
-                Ds[1,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x,y-1,z-1]))) *
-                    (self.Gv[1,x,y,z-1]-self.Gv[1,x,y,z] +self.Gv[2,x,y-1,z]-self.Gv[2,x,y,z] )
-                    )
-            elif y == self.__MaxY:
-                Ds[1,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x,y-1,z+1]))) *
-                    (self.Gv[1,x,y,z+1]-self.Gv[1,x,y,z] +self.Gv[2,x,y-1,z]-self.Gv[2,x,y,z] )
-                    )
-            elif z == self.__MaxZ:
-                Ds[1,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x,y+1,z-1]))) *
-                    (self.Gv[1,x,y,z-1]-self.Gv[1,x,y,z] +self.Gv[2,x,y+1,z]-self.Gv[2,x,y,z] )
-                    )
-            else:
-                Ds[1,2] =  (
-                    (1/self.__ds) *
-                    (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x,y+1,z+1]))) *
-                    (self.Gv[1,x,y,z+1]-self.Gv[1,x,y,z] +self.Gv[2,x,y+1,z]-self.Gv[2,x,y,z] )
-                    )
 
-        except:
-            #try:
-            #    Ds = self.CheckStressBoundary(x,y,z,Ds)
-            #except:
-                print('opps Ds12',x,y,z)
-                Ds[1,2]=0        
+        if y == self.__MaxY  and z == self.__MaxZ:
+            Ds[1,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x,y-1,z-1]))) *
+                (self.Gv[1,x,y,z-1]-self.Gv[1,x,y,z] +self.Gv[2,x,y-1,z]-self.Gv[2,x,y,z] )
+                )
+        elif y == self.__MaxY:
+            Ds[1,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y-1,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x,y-1,z+1]))) *
+                (self.Gv[1,x,y,z+1]-self.Gv[1,x,y,z] +self.Gv[2,x,y-1,z]-self.Gv[2,x,y,z] )
+                )
+        elif z == self.__MaxZ:
+            Ds[1,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x,y,z-1])+(1/self.Gp[2,x,y+1,z-1]))) *
+                (self.Gv[1,x,y,z-1]-self.Gv[1,x,y,z] +self.Gv[2,x,y+1,z]-self.Gv[2,x,y,z] )
+                )
+        else:
+            Ds[1,2] =  (
+                (1/self.__ds) *
+                (4/((1/self.Gp[2,x,y,z])+(1/self.Gp[2,x,y+1,z])+(1/self.Gp[2,x,y,z+1])+(1/self.Gp[2,x,y+1,z+1]))) *
+                (self.Gv[1,x,y,z+1]-self.Gv[1,x,y,z] +self.Gv[2,x,y+1,z]-self.Gv[2,x,y,z] )
+                )
         Ds[2,1] = Ds[1,2]
 
         Ds = self.CheckStressBoundary(x,y,z,Ds)
@@ -315,146 +269,132 @@ class EFIT:
 
         DV = np.zeros(3)
 
-        try:
-            if x == self.__MaxX and y == 0 and z==0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
-                        (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
-                        )
-            elif y == 0 and z==0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
-                        (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
-                        )
-            elif x == self.__MaxX and z==0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
-                        (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
-                        )
-            elif x == self.__MaxX and y == 0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
-                        (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
-                        )
-            elif z==0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
-                        (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
-                        )
-            elif x == self.__MaxX:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
-                        (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
-                        )
-            elif y == 0:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
-                        (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
-                        )
-            else:
-                DV[0] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
-                        (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
-                        )
+        if x == self.__MaxX and y == 0 and z==0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
+                    (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
+                    )
+        elif y == 0 and z==0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
+                    (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
+                    )
+        elif x == self.__MaxX and z==0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
+                    (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
+                    )
+        elif x == self.__MaxX and y == 0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
+                    (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
+                    )
+        elif z==0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
+                    (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z+1])
+                    )
+        elif x == self.__MaxX:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x-1,y,z])) *
+                    (self.Gs[0,0,x-1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
+                    )
+        elif y == 0:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
+                    (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y+1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
+                    )
+        else:
+            DV[0] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x+1,y,z])) *
+                    (self.Gs[0,0,x+1,y,z] - self.Gs[0,0,x,y,z] + self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
+                    )
 
-        except:
-            print('opps Dv0',x,y,z)
-            DV[0]=0
-        
         #calculate velocity in y based on 3.54
-        try:
-            if y==self.__MaxY and x==0 and z==0:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
-                        )
-            elif x==0 and z==0:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
-                        )
-            elif y==self.__MaxY and z==0:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
-                        )
-            elif y==self.__MaxY and x==0:
-                DV[1] = ((1 / self.__ds ) 
-                        * (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z]))
-                        * (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
-                        )
-            elif y==self.__MaxY:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
-                        )
-            elif x==0:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
-                        )
-            elif z==0:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
-                        )
-            else:
-                DV[1] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
-                        (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
-                        )
-        except:
-            print('opps Dv1',x,y,z)
-            DV[1]=0
+        if y==self.__MaxY and x==0 and z==0:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
+                    )
+        elif x==0 and z==0:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
+                    )
+        elif y==self.__MaxY and z==0:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
+                    )
+        elif y==self.__MaxY and x==0:
+            DV[1] = ((1 / self.__ds ) 
+                    * (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z]))
+                    * (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
+                    )
+        elif y==self.__MaxY:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y-1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y-1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
+                    )
+        elif x==0:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x+1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
+                    )
+        elif z==0:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z+1])
+                    )
+        else:
+            DV[1] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y+1,z])) *
+                    (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,1,x,y+1,z] - self.Gs[1,1,x,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
+                    )
 
         #calculate velocity in z based on 3.54
-        try:
-            if z==self.__MaxZ and x==0 and y==0:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
-                        )
-            elif x==0 and y==0:
-                DV[2] = ( 
-                        (1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z] + self.Gp[0,x,y,z+1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
-                        )
-            elif z==self.__MaxZ and y==0:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
-                        )
-            elif z==self.__MaxZ and x==0:
-                DV[2] = ( 
-                        (1 / self.__ds )
-                        * (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) 
-                        * (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
-                        )
-            elif z==self.__MaxZ:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
-                        )
-            elif x==0:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
-                        )
-            elif y==0:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
-                        )
-            else:
-                DV[2] = ((1 / self.__ds ) *
-                        (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
-                        (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
-                        )
-
-        except:
-            print('opps Dv2',x,y,z, self.__ds, self.__MaxZ)
-            DV[2]=0
+        if z==self.__MaxZ and x==0 and y==0:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
+                    )
+        elif x==0 and y==0:
+            DV[2] = ( 
+                    (1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z] + self.Gp[0,x,y,z+1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
+                    )
+        elif z==self.__MaxZ and y==0:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
+                    )
+        elif z==self.__MaxZ and x==0:
+            DV[2] = ( 
+                    (1 / self.__ds )
+                    * (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) 
+                    * (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
+                    )
+        elif z==self.__MaxZ:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z-1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z-1] -self.Gs[2,2,x,y,z])
+                    )
+        elif x==0:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x+1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
+                    )
+        elif y==0:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y+1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
+                    )
+        else:
+            DV[2] = ((1 / self.__ds ) *
+                    (2 / (self.Gp[0,x,y,z]+self.Gp[0,x,y,z+1])) *
+                    (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z] + self.Gs[2,2,x,y,z+1] -self.Gs[2,2,x,y,z])
+                    )
         
         DV = self.CheckVelocityBoundary(x,y,z,DV)
 
