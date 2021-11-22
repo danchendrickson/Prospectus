@@ -1,4 +1,6 @@
 import numpy as np
+# This file is a modified attempt with the grid staggerd such that Velocity is one more than
+# stress on each dimmension.  
 
 class EFIT:
     __ts = 0

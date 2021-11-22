@@ -95,6 +95,13 @@ class EFIT:
         
         Lame1=self.Gp[1,x,y,z]
         Lame2=self.Gp[2,x,y,z]
+
+        #experimental add for grid offsetting
+        x+=1
+        y+=1
+        z+=1
+        #end experiment
+
         if x == 0:
             Ds[0,0] = 0
         elif y==0 and z == 0:
