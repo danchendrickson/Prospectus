@@ -268,7 +268,7 @@ class EFIT:
         z+=1
         DV = np.zeros(3)
 
-        if x == self.__MaxX:
+        if x == self.__MaxX+1:
             DV[0] = ((1 / self.__ds ) *
                     (1 / (self.Gp[0,x,y,z])) *
                     (self.Gs[0,1,x,y,z] - self.Gs[0,1,x,y-1,z] + self.Gs[0,2,x,y,z] -self.Gs[0,2,x,y,z-1])
@@ -280,7 +280,7 @@ class EFIT:
                     )
 
         #calculate velocity in y based on 3.54
-        if y==self.__MaxY:
+        if y==self.__MaxY+1:
             DV[1] = ((1 / self.__ds ) *
                     (1 / (self.Gp[0,x,y,z])) *
                     (self.Gs[0,1,x,y,z] - self.Gs[0,1,x-1,y,z] + self.Gs[1,2,x,y,z] -self.Gs[1,2,x,y,z-1])
@@ -292,7 +292,7 @@ class EFIT:
                     )
 
         #calculate velocity in z based on 3.54
-        if z==self.__MaxZ:
+        if z==self.__MaxZ+1:
             DV[2] = ((1 / self.__ds ) *
                     (1 / (self.Gp[0,x,y,z])) *
                     (self.Gs[0,2,x,y,z] - self.Gs[0,2,x-1,y,z] + self.Gs[1,2,x,y,z] - self.Gs[1,2,x,y-1,z])
